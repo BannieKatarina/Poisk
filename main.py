@@ -40,7 +40,8 @@ toponym_longitude, toponym_lattitude = toponym_coodrinates.split(" ")
 map_params = {
     "ll": ",".join([toponym_longitude, toponym_lattitude]),
     "spn": ",".join(toponym_spn),
-    "l": "map"
+    "l": "map",
+    "pt": f"{toponym_longitude},{toponym_lattitude},pm2rdm"
 }
 
 map_api_server = "http://static-maps.yandex.ru/1.x/"
