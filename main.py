@@ -1,6 +1,6 @@
 import sys
 from io import BytesIO
-from pprint import pprint
+from mashtab import mashtab
 # Этот класс поможет нам сделать картинку из потока байт
 
 import requests
@@ -29,10 +29,7 @@ json_response = response.json()
 # Получаем первый топоним из ответа геокодера.
 toponym = json_response["response"]["GeoObjectCollection"][
     "featureMember"][0]["GeoObject"]
-# Нахождение размера объекта в градусной мере:
-toponym_lower = list(map(float, toponym['boundedBy']['Envelope']['lowerCorner'].split(' ')))
-toponym_upper = list(map(float, toponym['boundedBy']['Envelope']['upperCorner'].split(' ')))
-toponym_spn = list(map(str, [toponym_upper[0] - toponym_lower[0], toponym_upper[1] - toponym_lower[1]]))
+toponym_spn = mashtab(toponym)
 # Координаты центра топонима:
 toponym_coodrinates = toponym["Point"]["pos"]
 # Долгота и широта:
